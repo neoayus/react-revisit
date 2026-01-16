@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function GetAdvice(){
     // react states to change UI 
@@ -13,10 +13,14 @@ export default function GetAdvice(){
         setAdvice(data.slip.advice) ;
         setCount(++count) // icrement count on every button click 
     } 
+    
+    useEffect(function(){
+        getAdvice();
+    }, []);
 
     return(
         <>
-            <h1>Take my: {advice}</h1>
+            <h1>Take my Advice: {advice}</h1>
             <button onClick={getAdvice}>
                 I am juss another Button!
             </button>
