@@ -14,7 +14,7 @@ export default function GetAdvice(){
         setCount(++count) // icrement count on every button click 
     } 
     
-    useEffect(function(){
+    useEffect(function(){ // this state allows you to run some function at the very first time a page loads up :D 
         getAdvice();
     }, []);
 
