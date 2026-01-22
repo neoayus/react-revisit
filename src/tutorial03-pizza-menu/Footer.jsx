@@ -12,9 +12,9 @@ export default function Footer(){
     // }
 
     return(
-        <>
+        <div className="footer">
             <h3>{new Date().toLocaleTimeString()}. We're Currently Open!</h3>
-        </>
+        </div>
     )
     
 }

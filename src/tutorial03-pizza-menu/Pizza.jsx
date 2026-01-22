@@ -1,18 +1,20 @@
 export default function Pizza(props){
     console.log(props) ;
     return(
-        <div className="pizza">
+        <li className="pizza">
             {/* UI with no prop  */}
             {/* <img src="../../public/03-pizza-menu/spinaci.jpg" alt="" />
             <h3>Pizza Spinaci</h3>
             <p>Tomato, mozarella, spinach, and ricotta cheese </p> */}
-            <img src={props.img} alt={props.name} />
+
+            {/* here' we'll update the props.propName to "props.pizza.prop" so we can render the list, in Menu.jsx" */}
+            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
             <div>
-                <h3>{props.name}</h3>
-                <p>{props.ingredients}</p>
-                <span>{props.price + 3 + "$"}</span>
+                <h3>{props.pizzaObj.name}</h3>
+                <p>{props.pizzaObj.ingredients}</p>
+                <span>{props.pizzaObj.price}</span>
             </div>
 
-        </div>
+        </li>
     )
 }
