@@ -1,11 +1,11 @@
-import Pizza from './tutorial03-pizza-menu/Pizza.jsx'
+import PizzaApp from './tutorial03-pizza-menu/PizzaApp.jsx'
 
 function App() {
   return (
     <>
-      <Pizza /> 
+      <PizzaApp /> 
     </>
   )
 }
 
-export default App
+export default App ;
