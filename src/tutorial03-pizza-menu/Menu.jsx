@@ -50,6 +50,10 @@ export default function Menu(){
         // RENDERING A LIST:
         <main className='menu'>
             <h2>Our Menu</h2>
+            <p>
+                Authentic Italian cuisine. 6 creative dishes to choose from. All from our stone oven, all organic, all delicious
+            </p>
+
             <ul className='pizzas'>
                 {/* {pizzaData.map(pizza => <Pizza name={pizza.name} photoName={pizza.photoName} /> )} */}
                 {/* that's not how we do it, what we do is, pass in the entire object into the more specific component (pizza in this case) */}
