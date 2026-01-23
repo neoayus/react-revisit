@@ -22,14 +22,18 @@ export default function Footer(){
                     :<p> Sorry, We are closed for now, tho we'll Open Again soon :3 </p>
             } */}
             {
-                isOpen && (
-                    <div className="order">
-                        <p>We're open until {closeHour}:00. Come visit us or order online. </p>
-                        <button className="btn">Order Now!!</button>
-                    </div>
-                )
+                isOpen && (<Order closeHour={closeHour}/>)
             }
 
         </footer>
+    )
+}
+
+function Order({closeHour}){
+    return(
+        <div className="order">
+            <p>We're open until {closeHour}:00. Come visit us or order online. </p>
+            <button className="btn">Order Now!!</button>
+        </div>
     )
 }
