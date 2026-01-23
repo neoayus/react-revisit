@@ -1,3 +1,4 @@
+import TechStack from './TechStack';
 import './ProfileCard.css'; 
 import img from './kanye.webp' ;
 
@@ -14,14 +15,5 @@ export default function ProfileCard({name, bio, techStack}){
             </div>
             
         </>
-    )
-}
-
-function TechStack({techStack}){
-    const stack = techStack.split(" ") ;
-    return(
-        <div className='techStack'>
-            {stack.map((tech)=> (<button className='tech'>{tech}</button>))} 
-        </div>
     )
 }
