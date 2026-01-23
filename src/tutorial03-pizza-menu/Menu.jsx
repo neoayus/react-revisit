@@ -45,7 +45,7 @@ export default function Menu(){
         soldOut: false,
     },
 ];
-    
+
     return(
         // RENDERING A LIST:
         <main className='menu'>

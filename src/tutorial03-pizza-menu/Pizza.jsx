@@ -1,5 +1,9 @@
 export default function Pizza(props){
-    console.log(props) ;
+    // console.log(props) ;
+    
+    // CONDITIONL RENDERING WITH MULTIPLE RETURNS :
+    if(props.pizzaObj.soldOut) return null ; 
+
     return(
         <li className="pizza">
             {/* UI with no prop  */}
