@@ -1,22 +1,28 @@
-import Item from './Item.jsx' ; 
+import Item from "./Item.jsx";
 
-// List for List Rendering: 
+// List for List Rendering:
 // const initialItems = [
 //   { id: 1, description: "Passports", quantity: 2, packed: false },
 //   { id: 2, description: "Socks", quantity: 12, packed: false },
 //   { id: 3, description: "Charger", quantity: 1, packed: true },
 // ];
 
-export default function PackingList({items, onDeleteItem, onToggleItems}){
-    return(
-        <div className='list'>
-            <ul>
-                { // list rendering
-                    items.map((item) => (
-                        <Item item={item} key={item.id} onDeleteItem={onDeleteItem} onToggleItems={onToggleItems}/>
-                    ))
-                }
-            </ul>
-        </div>
-    )
+export default function PackingList({ items, onDeleteItem, onToggleItems }) {
+  return (
+    <div className="list">
+      <ul>
+        {
+          // list rendering
+          items.map((item) => (
+            <Item
+              item={item}
+              key={item.id}
+              onDeleteItem={onDeleteItem}
+              onToggleItems={onToggleItems}
+            />
+          ))
+        }
+      </ul>
+    </div>
+  );
 }

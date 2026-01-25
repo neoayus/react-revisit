@@ -5,8 +5,7 @@ function App() {
     <>
       <TravelList />
     </>
-  )
+  );
 }
 
-export default App ;
-
+export default App;
