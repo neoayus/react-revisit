@@ -9,7 +9,6 @@ import Stats from "./Stats.jsx";
 export default function TravelList() {
   // STATE LIFTING
   const [items, setItems] = useState([]);
-  const [check, setCheck] = useState(false);
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
@@ -39,7 +38,7 @@ export default function TravelList() {
         onToggleItems={handleToggleItem}
       />{" "}
       {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }

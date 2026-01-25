@@ -11,7 +11,7 @@ export default function Form({ onAddItems }) {
       description,
       quantity,
       packed: false,
-      id: Date.now,
+      id: Date.now(),
     };
 
     // handleAddItems(newItem) ; this piece is updated to.. after lifting up state
