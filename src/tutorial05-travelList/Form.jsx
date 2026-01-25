@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Form(){
+export default function Form({onAddItems}){
     
     function handleSubmit(e){
         e.preventDefault() ;
@@ -14,7 +14,9 @@ export default function Form(){
             packed: false, 
             id: Date.now
         }
-        console.log(newItem) ;
+
+        // handleAddItems(newItem) ; this piece is updated to.. after lifting up state
+        onAddItems(newItem)
         
         // send the form to it's initial state: 
         setDescription("") ;
@@ -24,6 +26,7 @@ export default function Form(){
     // STATES : to handle form data:
     const [description, setDescription] = useState("") ;
     const [quantity, setQuantity] = useState(1) ;
+    
 
     return(
         <form className="add-form" onSubmit={handleSubmit}>

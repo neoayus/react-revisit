@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './style.css'; 
 
 import Logo from './Logo.jsx' ;
@@ -6,11 +7,21 @@ import PackingList from './PackingList.jsx' ;
 import Stats from './Stats.jsx' ;
 
 export default function TravelList(){
+
+    // STATE LIFTING 
+    const [items, setItems] = useState([]) ;
+
+    function handleAddItems(item){
+        setItems((items)=> [...items, item] )
+    }
+
     return(
         <div className='app'>
             <Logo />
-            <Form />
-            <PackingList />
+            {/* below 2 lines are affected by state lifting  */}
+            <Form onAddItems={handleAddItems}/> {/* this functioned is passed to the Form Component so it can updat the new item*/}
+            <PackingList items={items}/> {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
+
             <Stats />
         </div>
     )
