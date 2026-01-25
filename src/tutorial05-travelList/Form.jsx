@@ -4,14 +4,26 @@ export default function Form(){
     
     function handleSubmit(e){
         e.preventDefault() ;
-        // console.log(e) ;
-        const formData = new FormData(e.target) ;
-        console.log(formData) ;
+        
+        if(!description) return ;
+        
+        // create new Items on the basis of form value 
+        const newItem = {
+            description, 
+            quantity, 
+            packed: false, 
+            id: Date.now
+        }
+        console.log(newItem) ;
+        
+        // send the form to it's initial state: 
+        setDescription("") ;
+        setQuantity(1) ;
     }
     
     // STATES : to handle form data:
     const [description, setDescription] = useState("") ;
-    const [quantity, setQuantity] = useState(0) ;
+    const [quantity, setQuantity] = useState(1) ;
 
     return(
         <form className="add-form" onSubmit={handleSubmit}>
@@ -41,7 +53,7 @@ export default function Form(){
                 value={description} 
                 onChange={
                     (e)=> {
-                        console.log(e.target.value) ;
+                        // console.log(e.target.value) ;
                         setDescription(e.target.value) ;                     
                     }
                 }/>
