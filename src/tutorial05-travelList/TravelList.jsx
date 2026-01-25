@@ -10,6 +10,7 @@ export default function TravelList(){
 
     // STATE LIFTING 
     const [items, setItems] = useState([]) ;
+    const [check, setCheck] = useState(false) ; 
 
     function handleAddItems(item){
         setItems((items)=> [...items, item] )
@@ -18,13 +19,20 @@ export default function TravelList(){
     function handleDeleteItem(id){
         setItems(items => items.filter((item) => item.id !== id ))
     }
+    
+    function handleToggleItem(id){
+        setItems(items => 
+            items.map(item => item.id === id ? {...item, packed: !item.packed}
+                : item
+            ))
+    }
 
     return(
         <div className='app'>
             <Logo />
             {/* below 2 lines are affected by state lifting  */}
             <Form onAddItems={handleAddItems}/> {/* this functioned is passed to the Form Component so it can updat the new item*/}
-            <PackingList items={items} onDeleteItem={handleDeleteItem}/> {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
+            <PackingList items={items} onDeleteItem={handleDeleteItem} onToggleItems={handleToggleItem}/> {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
 
             <Stats />
         </div>
