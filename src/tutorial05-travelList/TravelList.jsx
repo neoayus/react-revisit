@@ -14,13 +14,17 @@ export default function TravelList(){
     function handleAddItems(item){
         setItems((items)=> [...items, item] )
     }
+    
+    function handleDeleteItem(id){
+        setItems(items => items.filter((item) => item.id !== id ))
+    }
 
     return(
         <div className='app'>
             <Logo />
             {/* below 2 lines are affected by state lifting  */}
             <Form onAddItems={handleAddItems}/> {/* this functioned is passed to the Form Component so it can updat the new item*/}
-            <PackingList items={items}/> {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
+            <PackingList items={items} onDeleteItem={handleDeleteItem}/> {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
 
             <Stats />
         </div>
