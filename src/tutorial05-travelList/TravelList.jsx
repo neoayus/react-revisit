@@ -27,7 +27,8 @@ export default function TravelList() {
   }
   
   function handleClearList(){
-    setItems((items)=> items.filter( ()=> false ))
+    const confirmed = window.confirm("if you really wana delete all items ? ")
+    if (confirmed) setItems((items)=> items.filter( ()=> false ))
   } 
 
   return (

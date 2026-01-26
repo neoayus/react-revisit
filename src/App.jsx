@@ -1,9 +1,9 @@
-import TravelList from "./tutorial05-travelList/TravelList";
+import Accordion from "./Exercise02-Accordion/Accordion";
 
 function App() {
   return (
     <>
-      <TravelList />
+      <Accordion />
     </>
   );
 }
