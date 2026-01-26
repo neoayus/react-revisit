@@ -26,7 +26,9 @@ export default function TravelList() {
     );
   }
   
-  
+  function handleClearList(){
+    setItems((items)=> items.filter( ()=> false ))
+  } 
 
   return (
     <div className="app">
@@ -38,6 +40,7 @@ export default function TravelList() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggleItems={handleToggleItem}
+        onClearList={handleClearList}
       />{" "}
       {/* this prop is passed to the Packing List  Component so it can trigger re-render*/}
       <Stats items={items} />
