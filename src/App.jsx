@@ -1,9 +1,9 @@
-import Accordion from "./Exercise02-Accordion/Accordion";
+import Steps from './tutorial04-steps-w-state/Steps-v2'
 
 function App() {
   return (
     <>
-      <Accordion />
+      <Steps /> 
     </>
   );
 }
