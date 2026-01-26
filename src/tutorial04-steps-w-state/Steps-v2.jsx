@@ -43,8 +43,8 @@ export default function Steps(){
                     <p className='message'>Step {step} : {messages[step-1]}</p>
 
                     <div className="buttons">
-                        <Button textColor="#fff" bgColor='#7950f2' text="previous" emoji="<<<" onClick={handlePrevious}/>
-                        <Button textColor="#fff" bgColor='#7950f2' text="next" emoji=">>>" onClick={handleNext}/>
+                        <Button textColor="#fff" bgColor='#7950f2' onClick={handlePrevious} children> &lt; &lt; &lt; previous </Button>
+                        <Button textColor="#fff" bgColor='#7950f2' onClick={handleNext} children> next &gt; &gt; &gt;  </Button> 
                     </div>
 
                 </div>
@@ -55,16 +55,16 @@ export default function Steps(){
                 // backgroundColor : "", 
                 // color: "" }}
 
-function Button({textColor, bgColor, text, emoji, onClick}){
+// USE CHILDREN PROP
+function Button({textColor, bgColor, onClick, children}){
     return(
         <button 
             style={{
                 backgroundColor : bgColor, 
                 color: textColor, }}
-            emoji={emoji}
             onClick={onClick} 
         > 
-            <span>{emoji}</span>{text}
+            {children}
         </button>
     )
 
