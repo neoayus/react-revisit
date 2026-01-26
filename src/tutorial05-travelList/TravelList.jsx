@@ -25,6 +25,8 @@ export default function TravelList() {
       ),
     );
   }
+  
+  
 
   return (
     <div className="app">

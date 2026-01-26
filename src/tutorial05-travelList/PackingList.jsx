@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Item from "./Item.jsx";
 
 // List for List Rendering:
@@ -8,12 +9,21 @@ import Item from "./Item.jsx";
 // ];
 
 export default function PackingList({ items, onDeleteItem, onToggleItems }) {
+  const [sortBy, setSortBy] = useState("input") ; 
+
+  // sort function 
+  let sortedItems ;
+  if(sortBy == "input") sortedItems= items ;
+  if(sortBy == "description") sortedItems= items.slice().sort((a, b) => a.description.localeCompare(b.description) ) ;
+  if(sortBy == "packed") sortedItems= items.slice().sort((a, b) => Number(a.packed) - Number (b.packed)) ;
+
   return (
     <div className="list">
+
       <ul>
         {
           // list rendering
-          items.map((item) => (
+          sortedItems.map((item) => (
             <Item
               item={item}
               key={item.id}
@@ -23,6 +33,18 @@ export default function PackingList({ items, onDeleteItem, onToggleItems }) {
           ))
         }
       </ul>
+
+        <div className="actions"> 
+          <select name="" id="" value={sortBy} onChange={(e)=>{ setSortBy(e.target.value)}}>
+            <option value="input">Sort by Input Order </option> 
+            <option value="description">Sort by Description </option> 
+            <option value="packed">Sort by Packed Status </option> 
+          </select>
+          
+          <button>Clear List</button>
+
+        </div>
+
     </div>
   );
 }
