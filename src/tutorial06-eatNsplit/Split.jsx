@@ -43,6 +43,8 @@ export default function Split() {
     }else{
       setSelectedFriend(null);
     }
+    
+    setShowFriend(false); 
   }
 
   return (
@@ -165,16 +167,15 @@ function FormAddFriend({ onAddFriend, onHideAddFriend }) {
 
 function FormSplitBill({selectedFriend}) {
   
-  const [bill, setBill] = useState(0) ;
-  const[yourHalf, setYourHalf] = useState(0);
-  const [otherHalf, setOtherHalf] = useState(0) ; 
+  const [bill, setBill] = useState("") ;
+  const[yourHalf, setYourHalf] = useState("");
+
+  const otherHalf = bill-yourHalf ;
+  
+  const [whoIsPaying, setWhoIsPaying] = useState("user"); 
   
   function handleSplit(e){
     e.preventDefault() ;
-    
-    // split bill 
-    var split = bill - yourHalf ;
-    setOtherHalf(split) ;
   }
   
 
@@ -186,7 +187,7 @@ function FormSplitBill({selectedFriend}) {
       <input type="number" value={bill} onChange={(e)=> setBill(Number(e.target.value))}/>
 
       <label> Your Expanses </label>
-      <input type="number" value={yourHalf} onChange={(e)=> setYourHalf(Number(e.target.value))}/>
+      <input type="number" value={yourHalf} onChange={(e)=> setYourHalf(Number(e.target.value) > bill ? yourHalf : Number(e.target.value) )}/>
 
       <label> X's Expanses </label>
       <input type="number" value={otherHalf} disabled />
@@ -194,7 +195,7 @@ function FormSplitBill({selectedFriend}) {
       <label>Who is paying the bill? </label>
       <select name="" id="">
         <option value="you"> You </option>
-        <option value="friend"> X </option>
+        <option value="friend"> {selectedFriend.name} </option>
       </select>
 
       <Button> Split Bill </Button>

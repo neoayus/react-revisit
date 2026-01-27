@@ -1,9 +1,9 @@
-import Accordion from "./Exercise02-Accordion/Accordion-v2";
+import Split from "./tutorial06-eatNsplit/Split";
 
 function App() {
   return (
     <>
-      <Accordion /> 
+      <Split/>
     </>
   );
 }
