@@ -5,18 +5,26 @@ export default function TipCalc() {
   // state lifting
   const [bill, setBill] = useState(" ");
   const [rating, setRating] = useState(0);
+  const [friendsRating, setFriendsRating] = useState(0);
 
-  let tip = (rating / 100) * bill;
+
+  let avgRating = (rating + friendsRating) / 2 ;
+  let tip = (avgRating / 100) * bill;
 
   return (
     <form style={{ fontSize: "25px" }}>
       <Bill bill={bill} setBill={setBill} />
+
       <RateService rating={rating} setRating={setRating}>
-        {" "}
         How did you like the Service ?{" "}
       </RateService>
-      {/* <RateService>How did your Friend like the Service ?  </RateService> */}
+
+      <RateService rating={friendsRating} setRating={setFriendsRating}>
+        How did your Friend like the Service ?{" "}
+      </RateService>
+
       <Total bill={bill} rating={rating} tip={tip} />
+
       <Reset setBill={setBill} setRating={setRating} />
     </form>
   );
