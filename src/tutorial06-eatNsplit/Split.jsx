@@ -27,20 +27,34 @@ export default function Split() {
   const [showAddFriend, setShowFriend] = useState(false);
   const [friends, setFriends] = useState(initialFriends);
   // const [friends, setFriends] = useState([]);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
-  function handleAddFriend(friend){
-    setFriends((friends) => [...friends, friend]); 
-  } 
+  function handleAddFriend(friend) {
+    setFriends((friends) => [...friends, friend]);
+  }
 
-  function handleHideAddFriend(){
-    setShowFriend(false) ;  
+  function handleHideAddFriend() {
+    setShowFriend(false);
+  }
+  
+  function handleSelection(friend){
+    if(selectedFriend != friend){
+      setSelectedFriend(friend)     
+    }else{
+      setSelectedFriend(null);
+    }
   }
 
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendList friends={friends} />
-        {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} onHideAddFriend={handleHideAddFriend}/>}
+        <FriendList friends={friends} selectedFriend={selectedFriend} onSelection={handleSelection}/>
+        {showAddFriend && (
+          <FormAddFriend
+            onAddFriend={handleAddFriend}
+            onHideAddFriend={handleHideAddFriend}
+          />
+        )}
         <Button
           onClick={() => {
             setShowFriend((show) => !show);
@@ -49,17 +63,18 @@ export default function Split() {
           {showAddFriend ? "Close" : "Add Friend"}
         </Button>
       </div>
-      <FormSplitBill />
+      {/* conditional renderin of form split bill  */}
+      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
     </div>
   );
 }
 
 // SPLIT
-function FriendList({ friends }) {
+function FriendList({friends, selectedFriend, onSelection}) {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} key={friend.id} />
+        <Friend friend={friend} key={friend.id} selectedFriend={selectedFriend} onSelection={onSelection}/>
       ))}
     </ul>
   );
@@ -75,7 +90,7 @@ export function Button({ onClick, children }) {
 }
 
 // SPLIT
-function Friend({ friend }) {
+function Friend({friend, onSelection, selectedFriend}) {
   return (
     <li>
       <img src={friend.image} alt={friend.name} />
@@ -94,13 +109,14 @@ function Friend({ friend }) {
         </p>
       )}
 
-      <Button> Select </Button>
+      <Button onClick={()=> onSelection(friend)}> {selectedFriend === friend ? "Close" : "Select"} </Button>
     </li>
+
   );
 }
 
 // SPLIT
-function FormAddFriend({onAddFriend, onHideAddFriend}) {
+function FormAddFriend({ onAddFriend, onHideAddFriend }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48");
 
@@ -119,9 +135,8 @@ function FormAddFriend({onAddFriend, onHideAddFriend}) {
     };
 
     // console.log(newFriend);
-    onAddFriend(newFriend) ; 
-    onHideAddFriend() ;
-
+    onAddFriend(newFriend);
+    onHideAddFriend();
   }
 
   return (
@@ -145,20 +160,36 @@ function FormAddFriend({onAddFriend, onHideAddFriend}) {
   );
 }
 
+
 // SPLIT
-function FormSplitBill() {
+
+function FormSplitBill({selectedFriend}) {
+  
+  const [bill, setBill] = useState(0) ;
+  const[yourHalf, setYourHalf] = useState(0);
+  const [otherHalf, setOtherHalf] = useState(0) ; 
+  
+  function handleSplit(e){
+    e.preventDefault() ;
+    
+    // split bill 
+    var split = bill - yourHalf ;
+    setOtherHalf(split) ;
+  }
+  
+
   return (
-    <form className="form-split-bill">
-      <h2>Split a Bill with X </h2>
+    <form className="form-split-bill" onSubmit={handleSplit}>
+      <h2>Split a Bill with {selectedFriend.name} </h2>
 
       <label> Bill Value </label>
-      <input type="number" />
+      <input type="number" value={bill} onChange={(e)=> setBill(Number(e.target.value))}/>
 
       <label> Your Expanses </label>
-      <input type="number" />
+      <input type="number" value={yourHalf} onChange={(e)=> setYourHalf(Number(e.target.value))}/>
 
       <label> X's Expanses </label>
-      <input type="number" disabled />
+      <input type="number" value={otherHalf} disabled />
 
       <label>Who is paying the bill? </label>
       <select name="" id="">
