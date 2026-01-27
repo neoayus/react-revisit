@@ -22,10 +22,16 @@ export default function TipCalc() {
       <RateService rating={friendsRating} setRating={setFriendsRating}>
         How did your Friend like the Service ?{" "}
       </RateService>
+      
+      {
+        bill > 0 && (
+          <>
+            <Total bill={bill} rating={rating} tip={tip} />
+            <Reset setBill={setBill} setRating={setRating} />
+          </>
+        ) 
+      }
 
-      <Total bill={bill} rating={rating} tip={tip} />
-
-      <Reset setBill={setBill} setRating={setRating} />
     </form>
   );
 }
