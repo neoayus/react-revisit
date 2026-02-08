@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Index.css";
+import { v4 as uuidv4 } from 'uuid';
 
 // list of friends
 const initialFriends = [
@@ -84,6 +85,7 @@ export default function Split() {
         <FormSplitBill
           selectedFriend={selectedFriend}
           onSplitBill={handleSplitBill}
+          key={uuidv4()}
         />
       )}
     </div>
